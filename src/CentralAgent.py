@@ -134,31 +134,31 @@ class CentralAgent(object):
 			location_arrival_times[full_ordering[location_index+1]] = time
 		return location_arrival_times
 
-	def get_reward(self, agents, order, action):
-		if action == 0:
-			matchable, agent_matched_to = self.check_feasibility(order, agents)
-			if matchable:
-				drop_off_time = self._get_ordering_return_time(deepcopy(agents[agent_matched_to].orders_to_pickup))[order.destination]
-				reward = (order.deadline - drop_off_time)
-			else:
-				reward = 0
-		else:
-			reward = 0
-		return reward
-
 	# def get_reward(self, agents, order, action):
 	# 	if action == 0:
 	# 		matchable, agent_matched_to = self.check_feasibility(order, agents)
-	# 		# exit()
 	# 		if matchable:
-	# 			# drop_off_time = self._get_ordering_return_time(deepcopy(agents[agent_matched_to].orders_to_pickup))[order.destination]
-	# 			# reward = (order.deadline - drop_off_time)
-	# 			reward = 1
+	# 			drop_off_time = self._get_ordering_return_time(deepcopy(agents[agent_matched_to].orders_to_pickup))[order.destination]
+	# 			reward = (order.deadline - drop_off_time)
 	# 		else:
 	# 			reward = 0
 	# 	else:
 	# 		reward = 0
 	# 	return reward
+
+	def get_reward(self, agents, order, action):
+		if action == 0:
+			matchable, agent_matched_to = self.check_feasibility(order, agents)
+			# exit()
+			if matchable:
+				# drop_off_time = self._get_ordering_return_time(deepcopy(agents[agent_matched_to].orders_to_pickup))[order.destination]
+				# reward = (order.deadline - drop_off_time)
+				reward = 1
+			else:
+				reward = 0
+		else:
+			reward = 0
+		return reward
 
 	# def get_reward(self, agents, order, action):
 	# 	if action == 0:
